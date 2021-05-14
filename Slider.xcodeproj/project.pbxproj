@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,11 @@
 		7145E0E7264E68E6003DAA20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7145E0E5264E68E6003DAA20 /* LaunchScreen.storyboard */; };
 		7145E0F2264E68E6003DAA20 /* SliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E0F1264E68E6003DAA20 /* SliderTests.swift */; };
 		7145E0FD264E68E6003DAA20 /* SliderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E0FC264E68E6003DAA20 /* SliderUITests.swift */; };
+		7145E10E264E6906003DAA20 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10A264E6906003DAA20 /* RangeSlider.swift */; };
+		7145E10F264E6906003DAA20 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */; };
+		7145E110264E6906003DAA20 /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */; };
+		7145E113264E6BE1003DAA20 /* SNSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E112264E6BE1003DAA20 /* SNSlider.swift */; };
+		7145E116264E6D0A003DAA20 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7145E115264E6D0A003DAA20 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +54,10 @@
 		7145E0F8264E68E6003DAA20 /* SliderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SliderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7145E0FC264E68E6003DAA20 /* SliderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderUITests.swift; sourceTree = "<group>"; };
 		7145E0FE264E68E6003DAA20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7145E10A264E6906003DAA20 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
+		7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
+		7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
+		7145E112264E6BE1003DAA20 /* SNSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7145E116264E6D0A003DAA20 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,6 +109,9 @@
 		7145E0D9264E68E5003DAA20 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
+				7145E10A264E6906003DAA20 /* RangeSlider.swift */,
+				7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */,
+				7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */,
 				7145E0DA264E68E5003DAA20 /* AppDelegate.swift */,
 				7145E0DC264E68E5003DAA20 /* SceneDelegate.swift */,
 				7145E0DE264E68E5003DAA20 /* ViewController.swift */,
@@ -106,6 +119,7 @@
 				7145E0E3264E68E6003DAA20 /* Assets.xcassets */,
 				7145E0E5264E68E6003DAA20 /* LaunchScreen.storyboard */,
 				7145E0E8264E68E6003DAA20 /* Info.plist */,
+				7145E112264E6BE1003DAA20 /* SNSlider.swift */,
 			);
 			path = Slider;
 			sourceTree = "<group>";
@@ -144,6 +158,9 @@
 			dependencies = (
 			);
 			name = Slider;
+			packageProductDependencies = (
+				7145E115264E6D0A003DAA20 /* SnapKit */,
+			);
 			productName = Slider;
 			productReference = 7145E0D7264E68E5003DAA20 /* Slider.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 7145E0CE264E68E5003DAA20;
+			packageReferences = (
+				7145E114264E6D0A003DAA20 /* XCRemoteSwiftPackageReference "snapkit" */,
+			);
 			productRefGroup = 7145E0D8264E68E5003DAA20 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -258,9 +278,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7145E10E264E6906003DAA20 /* RangeSlider.swift in Sources */,
+				7145E10F264E6906003DAA20 /* RangeSliderTrackLayer.swift in Sources */,
 				7145E0DF264E68E5003DAA20 /* ViewController.swift in Sources */,
 				7145E0DB264E68E5003DAA20 /* AppDelegate.swift in Sources */,
 				7145E0DD264E68E5003DAA20 /* SceneDelegate.swift in Sources */,
+				7145E110264E6906003DAA20 /* RangeSliderThumbLayer.swift in Sources */,
+				7145E113264E6BE1003DAA20 /* SNSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +463,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6244MYNR6;
 				INFOPLIST_FILE = Slider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,6 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z6244MYNR6;
 				INFOPLIST_FILE = Slider/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -593,6 +619,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7145E114264E6D0A003DAA20 /* XCRemoteSwiftPackageReference "snapkit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/snapkit/snapkit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7145E115264E6D0A003DAA20 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7145E114264E6D0A003DAA20 /* XCRemoteSwiftPackageReference "snapkit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7145E0CF264E68E5003DAA20 /* Project object */;
 }
