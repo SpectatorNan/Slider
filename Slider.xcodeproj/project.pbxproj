@@ -15,9 +15,6 @@
 		7145E0E7264E68E6003DAA20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7145E0E5264E68E6003DAA20 /* LaunchScreen.storyboard */; };
 		7145E0F2264E68E6003DAA20 /* SliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E0F1264E68E6003DAA20 /* SliderTests.swift */; };
 		7145E0FD264E68E6003DAA20 /* SliderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E0FC264E68E6003DAA20 /* SliderUITests.swift */; };
-		7145E10E264E6906003DAA20 /* RangeSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10A264E6906003DAA20 /* RangeSlider.swift */; };
-		7145E10F264E6906003DAA20 /* RangeSliderTrackLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */; };
-		7145E110264E6906003DAA20 /* RangeSliderThumbLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */; };
 		7145E113264E6BE1003DAA20 /* SNSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7145E112264E6BE1003DAA20 /* SNSlider.swift */; };
 		7145E116264E6D0A003DAA20 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7145E115264E6D0A003DAA20 /* SnapKit */; };
 /* End PBXBuildFile section */
@@ -54,9 +51,6 @@
 		7145E0F8264E68E6003DAA20 /* SliderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SliderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7145E0FC264E68E6003DAA20 /* SliderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderUITests.swift; sourceTree = "<group>"; };
 		7145E0FE264E68E6003DAA20 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7145E10A264E6906003DAA20 /* RangeSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSlider.swift; sourceTree = "<group>"; };
-		7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderTrackLayer.swift; sourceTree = "<group>"; };
-		7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RangeSliderThumbLayer.swift; sourceTree = "<group>"; };
 		7145E112264E6BE1003DAA20 /* SNSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNSlider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,9 +103,6 @@
 		7145E0D9264E68E5003DAA20 /* Slider */ = {
 			isa = PBXGroup;
 			children = (
-				7145E10A264E6906003DAA20 /* RangeSlider.swift */,
-				7145E10C264E6906003DAA20 /* RangeSliderThumbLayer.swift */,
-				7145E10B264E6906003DAA20 /* RangeSliderTrackLayer.swift */,
 				7145E0DA264E68E5003DAA20 /* AppDelegate.swift */,
 				7145E0DC264E68E5003DAA20 /* SceneDelegate.swift */,
 				7145E0DE264E68E5003DAA20 /* ViewController.swift */,
@@ -278,12 +269,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7145E10E264E6906003DAA20 /* RangeSlider.swift in Sources */,
-				7145E10F264E6906003DAA20 /* RangeSliderTrackLayer.swift in Sources */,
 				7145E0DF264E68E5003DAA20 /* ViewController.swift in Sources */,
 				7145E0DB264E68E5003DAA20 /* AppDelegate.swift in Sources */,
 				7145E0DD264E68E5003DAA20 /* SceneDelegate.swift in Sources */,
-				7145E110264E6906003DAA20 /* RangeSliderThumbLayer.swift in Sources */,
 				7145E113264E6BE1003DAA20 /* SNSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

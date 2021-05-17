@@ -10,13 +10,37 @@ import QuartzCore
 
 class SNSlider: UIControl {
     
-    var mininumValue = 0.0
-    var maxnumValue = 1.0
-    var currentValue = 0.2
+    var mininumValue = 0.0 {
+        didSet {
+            updateLayerFrames()
+        }
+    }
+    var maxnumValue = 1.0 {
+        didSet {
+            updateLayerFrames()
+        }
+    }
+    var currentValue = 0.2 {
+        didSet {
+            updateLayerFrames()
+        }
+    }
     
-    var trackTintColor = UIColor(white: 0.9, alpha: 1)
-    var trackHighlightTintColor = UIColor.red
-    var thumbTintColor = UIColor.white
+    var trackTintColor = UIColor(white: 0.1, alpha: 1) {
+        didSet {
+            trackLayer.setNeedsDisplay()
+        }
+    }
+    var trackHighlightTintColor = UIColor(red: 0.0, green: 0.45, blue: 0.94, alpha: 1.0) {
+        didSet {
+            trackLayer.setNeedsDisplay()
+        }
+    }
+    var thumbTintColor = UIColor.white {
+        didSet {
+            thumbLayer.setNeedsDisplay()
+        }
+    }
     
     let trackLayer = SNSliderTrackLayer()
     let thumbLayer = SNSliderThumbLayer()
@@ -40,19 +64,24 @@ class SNSlider: UIControl {
         }
     }
     
+    var isLoad = true
+    
     override func layoutSubviews() {
         super.layoutSubviews()
+        if isLoad {
         updateLayerFrames()
+         isLoad = false
+        }
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        trackLayer.backgroundColor = UIColor.blue.cgColor
+//        trackLayer.backgroundColor = UIColor.blue.cgColor
         trackLayer.slider = self
         layer.addSublayer(trackLayer)
         
-        thumbLayer.backgroundColor = UIColor.green.cgColor
+//        thumbLayer.backgroundColor = UIColor.green.cgColor
         thumbLayer.slider = self
         layer.addSublayer(thumbLayer)
         updateLayerFrames()
@@ -63,13 +92,15 @@ class SNSlider: UIControl {
     }
     
     func updateLayerFrames() {
-        
+                CATransaction.begin()
+                CATransaction.setDisableActions(true)
         trackLayer.frame = bounds.insetBy(dx: 0, dy: bounds.height / 3)
         trackLayer.setNeedsDisplay()
         
         let thumbLayerCenter = CGFloat(positionForValue(value: currentValue))
         thumbLayer.frame = CGRect(x: thumbLayerCenter - thumbWidth / 2, y: 0, width: thumbWidth, height: thumbWidth)
         thumbLayer.setNeedsDisplay()
+        CATransaction.commit()
     }
     
     func positionForValue(value: Double) -> Double {
@@ -106,12 +137,12 @@ extension SNSlider {
         }
          
         // 3. Update the UI
-        CATransaction.begin()
-        CATransaction.setDisableActions(true)
+//        CATransaction.begin()
+//        CATransaction.setDisableActions(true)
          
         updateLayerFrames()
          
-        CATransaction.commit()
+//        CATransaction.commit()
         sendActions(for: .valueChanged)
         return true
     }
@@ -129,6 +160,33 @@ extension SNSlider {
 class SNSliderThumbLayer: CALayer {
     var hightlighted = false
     weak var slider: SNSlider?
+    
+    override func draw(in ctx: CGContext) {
+        if let slider = slider {
+            let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
+            let cornerRadius = thumbFrame.height * slider.curvaceousness / 2.0
+            let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
+            
+            //Fill - with a subtle shadow
+            let shadowColor = UIColor.gray
+            ctx.setShadow(offset: CGSize(width: 0.0, height: 1.0), blur: 0.0, color: shadowColor.cgColor)
+            ctx.setFillColor(slider.thumbTintColor.cgColor)
+            ctx.addPath(thumbPath.cgPath)
+            ctx.fillPath()
+            
+            //Outline
+            ctx.setStrokeColor(shadowColor.cgColor)
+            ctx.setLineWidth(0.5)
+            ctx.addPath(thumbPath.cgPath)
+            ctx.strokePath()
+            
+            if hightlighted {
+                ctx.setFillColor(UIColor(white: 0.0, alpha: 0.1).cgColor)
+                ctx.addPath(thumbPath.cgPath)
+                ctx.fillPath()
+            }
+        }
+    }
 }
 
 class SNSliderTrackLayer: CALayer {
@@ -149,7 +207,11 @@ class SNSliderTrackLayer: CALayer {
             ctx.setFillColor(slider.trackHighlightTintColor.cgColor)
             let upperValue = CGFloat(slider.positionForValue(value: slider.currentValue))
             let rect = CGRect(x: 0, y: 0, width: upperValue, height: bounds.height)
-            ctx.fill(rect)
+            let hightPath = UIBezierPath(roundedRect: rect, cornerRadius: cornerRadius)
+//            ctx.fill(rect)
+            ctx.addPath(hightPath.cgPath)
+//            ctx.setFillColor(slider.trackHighlightTintColor.cgColor)
+            ctx.fillPath()
         }
     }
 }
