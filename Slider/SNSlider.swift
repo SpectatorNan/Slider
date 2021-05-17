@@ -7,6 +7,7 @@
 
 import UIKit
 import QuartzCore
+import SwiftUI
 
 class SNSlider: UIControl {
     
@@ -43,7 +44,7 @@ class SNSlider: UIControl {
     }
     
     let trackLayer = SNSliderTrackLayer()
-    let thumbLayer = SNSliderThumbLayer()
+    let thumbLayer = SNSliderThumbView()
     
     var previousLocation = CGPoint()
     
@@ -83,8 +84,12 @@ class SNSlider: UIControl {
         
 //        thumbLayer.backgroundColor = UIColor.green.cgColor
         thumbLayer.slider = self
-        layer.addSublayer(thumbLayer)
+//        layer.addSublayer(thumbLayer)
+        addSubview(thumbLayer)
+        thumbLayer.isUserInteractionEnabled = false
         updateLayerFrames()
+//        thumbLayer.borderWidth = 1
+//        thumbLayer.borderColor = thumbTintColor.cgColor
     }
     
     required init?(coder: NSCoder) {
@@ -156,37 +161,67 @@ extension SNSlider {
         thumbLayer.hightlighted = false
     }
 }
-
+class SNSliderThumbView: UIView {
+    var hightlighted = false
+    weak var slider: SNSlider?
+    lazy var colorView: UIView = {
+        let colorView = UIView()
+        addSubview(colorView)
+        return colorView
+    }()
+    override func draw(_ rect: CGRect) {
+        if let slider = slider {
+            let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
+            let cornerRadius = thumbFrame.height * slider.curvaceousness / 2.0
+            
+            colorView.backgroundColor = slider.thumbTintColor
+            colorView.frame = thumbFrame
+            colorView.layer.cornerRadius = cornerRadius
+            colorView.layer.masksToBounds = true
+        }
+    }
+}
 class SNSliderThumbLayer: CALayer {
     var hightlighted = false
     weak var slider: SNSlider?
+    
+    lazy var colorView: UIView = {
+        let colorView = UIView()
+        
+        return colorView
+    }()
+    
+    func updateShowStyle() {
+        
+    }
     
     override func draw(in ctx: CGContext) {
         if let slider = slider {
             let thumbFrame = bounds.insetBy(dx: 2.0, dy: 2.0)
             let cornerRadius = thumbFrame.height * slider.curvaceousness / 2.0
-            let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
+//            let thumbPath = UIBezierPath(roundedRect: thumbFrame, cornerRadius: cornerRadius)
             
             //Fill - with a subtle shadow
-            let shadowColor = UIColor.gray
-            ctx.setShadow(offset: CGSize(width: 0.0, height: 1.0), blur: 0.0, color: shadowColor.cgColor)
-            ctx.setFillColor(slider.thumbTintColor.cgColor)
-            ctx.addPath(thumbPath.cgPath)
-            ctx.fillPath()
-            
+//            let shadowColor = UIColor.gray
+//            ctx.setShadow(offset: CGSize(width: 0.0, height: 1.0), blur: 0.0, color: shadowColor.cgColor)
+//            ctx.setFillColor(slider.thumbTintColor.cgColor)
+//            ctx.addPath(thumbPath.cgPath)
+//            ctx.fillPath()
+//
             //Outline
-            ctx.setStrokeColor(shadowColor.cgColor)
-            ctx.setLineWidth(0.5)
-            ctx.addPath(thumbPath.cgPath)
-            ctx.strokePath()
+//            ctx.setStrokeColor(slider.thumbTintColor.cgColor)
+//            ctx.setLineWidth(1)
+//            ctx.addPath(thumbPath.cgPath)
+//            ctx.strokePath()
             
-            if hightlighted {
-                ctx.setFillColor(UIColor(white: 0.0, alpha: 0.1).cgColor)
-                ctx.addPath(thumbPath.cgPath)
-                ctx.fillPath()
-            }
+            colorView.backgroundColor = slider.thumbTintColor
+            colorView.frame = thumbFrame
+            colorView.layer.cornerRadius = cornerRadius
+            colorView.layer.masksToBounds = true
         }
     }
+    
+    
 }
 
 class SNSliderTrackLayer: CALayer {
