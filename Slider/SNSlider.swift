@@ -78,18 +78,13 @@ class SNSlider: UIControl {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-//        trackLayer.backgroundColor = UIColor.blue.cgColor
         trackLayer.slider = self
         layer.addSublayer(trackLayer)
         
-//        thumbLayer.backgroundColor = UIColor.green.cgColor
         thumbLayer.slider = self
-//        layer.addSublayer(thumbLayer)
         addSubview(thumbLayer)
         thumbLayer.isUserInteractionEnabled = false
         updateLayerFrames()
-//        thumbLayer.borderWidth = 1
-//        thumbLayer.borderColor = thumbTintColor.cgColor
     }
     
     required init?(coder: NSCoder) {
@@ -181,6 +176,7 @@ class SNSliderThumbView: UIView {
         }
     }
 }
+// 画出来太模糊  暂时 用 view 替代
 class SNSliderThumbLayer: CALayer {
     var hightlighted = false
     weak var slider: SNSlider?
